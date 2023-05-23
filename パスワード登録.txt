@@ -1,0 +1,18 @@
+パスフレーズの入力を省略する
+Set-Service -Name ssh-agent -StartupType Automatic
+Start-Service -Name ssh-agent
+
+git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"
+
+cd ~
+ssh-add .ssh/id_rsa
+
+パスフレーズ入力abcdefg
+
+
+上記の設定を削除して、元に戻したいとき
+cd ~
+ssh-add -D .ssh/id_rsa
+git config --global --unset core.sshCommand
+Stop-Service -Name ssh-agent
+Set-Service -Name ssh-agent -StartupType Disabled
